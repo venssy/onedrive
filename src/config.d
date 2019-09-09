@@ -15,6 +15,7 @@ final class Config
 	public string homePath;
 	public string configDirName;
 	public string defaultSyncDir = "~/OneDrive";
+	public string defaultRemoteDir = "/";
 	public string defaultSkipFile = "~*|.~*|*.tmp";
 	public string defaultSkipDir = "";
 	public string configFileSyncDir;
@@ -33,6 +34,7 @@ final class Config
 	{
 		// default configuration
 		stringValues["sync_dir"]         = defaultSyncDir;
+		stringValues["remote_dir"]         = defaultRemoteDir;
 		stringValues["skip_file"]        = defaultSkipFile;
 		stringValues["skip_dir"]         = defaultSkipDir;
 		stringValues["log_dir"]          = "/var/log/onedrive/";
@@ -283,6 +285,9 @@ final class Config
 				"syncdir",
 					"Specify the local directory used for synchronization to OneDrive",
 					&stringValues["sync_dir"],
+				"remotedir",
+					"Specify the remote directory used for synchronization",
+					&stringValues["remote_dir"],
 				"synchronize",
 					"Perform a synchronization",
 					&boolValues["synchronize"],
@@ -430,7 +435,8 @@ void outputLongHelp(Option[] opt)
 		"--single-directory",
 		"--skip-file",
 		"--source-directory",
-		"--syncdir" ];
+		"--syncdir",
+		"--remotedir" ];
 	writeln(`OneDrive - a client for OneDrive Cloud Services
 
 Usage:
